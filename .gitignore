@@ -1,4 +1,17 @@
+# dependencies
 node_modules
+
+# environment
 .env
-data/*.log
+
+# logs
+*.log
+
+# OS files
 .DS_Store
+
+# optional cache
+.cache
+
+# output temp files
+tmp/

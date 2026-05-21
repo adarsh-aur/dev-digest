@@ -1,0 +1,22 @@
+[
+    {
+        "url": "https://openai.com/blog/rss.xml",
+        "name": "OpenAI Blog",
+        "category": "ai"
+    },
+    {
+        "url": "https://feeeds.feedburner.com/TheHackerNews",
+        "name": "The Hacker News",
+        "category": "security"   
+    },
+    {
+        "url": "https://dev.to/feed",
+        "name": "Dev.to",
+        "category": "development"
+    },
+    {
+        "url": "https://reddit.com/r/technology/rss",
+        "name": "Reddit Technology",
+        "category": "technology"
+    }
+]
