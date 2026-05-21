@@ -1,0 +1,19 @@
+{
+  "name": "knowledge-garden",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "rss-parser": "^3.13.0",
+    "simple-git": "^3.36.0",
+    "slugify": "^1.6.9"
+  }
+}
