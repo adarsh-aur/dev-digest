@@ -7,7 +7,7 @@ function createMarkdown(article) {
 
     const folder = path.join(__dirname, "../content", article.category);
 
-    if(!fs.existsSync(foler)) {
+    if(!fs.existsSync(folder)) {
         fs.mkdirSync(folder, { recursive: true });
     }
 

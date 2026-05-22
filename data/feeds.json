@@ -5,9 +5,9 @@
         "category": "ai"
     },
     {
-        "url": "https://feeeds.feedburner.com/TheHackerNews",
+        "url": "https://feeds.feedburner.com/TheHackersNews",
         "name": "The Hacker News",
-        "category": "security"   
+        "category": "security"
     },
     {
         "url": "https://dev.to/feed",
@@ -15,8 +15,13 @@
         "category": "development"
     },
     {
-        "url": "https://reddit.com/r/technology/rss",
-        "name": "Reddit Technology",
+        "url": "https://techcrunch.com/feed/",
+        "name": "TechCrunch",
         "category": "technology"
+    },
+    {
+        "url": "https://mshibanami.github.io/GitHubTrendingRSS/daily/all.xml",
+        "name": "Github Trending",
+        "category": "opensource"
     }
 ]

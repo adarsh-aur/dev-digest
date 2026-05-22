@@ -7,7 +7,7 @@ const path = require('path');
 async function fetchFeeds() {
     const feedsPath = path.join(__dirname, "../data/feeds.json");
 
-    const feeds = JSON.parse(fs.readFileSynce(feedsPath, 'utf-8'));
+    const feeds = JSON.parse(fs.readFileSync(feedsPath, 'utf-8'));
 
     let articles = [];
 

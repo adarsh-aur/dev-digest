@@ -1,7 +1,7 @@
 const fs = require ('fs');
 const path = require ('path');
 
-function generateIndex(article) {
+function generateIndex(category) {
     const dir = path.join(__dirname, "../content", category);
 
     if(!fs.existsSync(dir)) return;

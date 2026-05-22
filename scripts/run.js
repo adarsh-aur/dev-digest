@@ -10,10 +10,13 @@ async function run() {
         createMarkdown(article);
     }
 
-    generateIndex("ai");
-    generateIndex("development");
-    generateIndex("security");
-    generateIndex("technology");
+    const categories = [...new Set(
+        articles.map(article => article.category)
+      )];
+      
+      for (const category of categories) {
+        generateIndex(category);
+      }
 
     await gitWorkFlow();
 
