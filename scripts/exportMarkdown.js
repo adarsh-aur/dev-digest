@@ -23,8 +23,11 @@ function exportMarkdown(article) {
 
 ## Summary
 
-${article.content}
+${article.summary || article.content}
 
+## Tags
+
+${(article.tags || []).map(t => `#${t}`).join(" ")}
 ---
 
 ## Notes

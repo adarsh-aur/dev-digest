@@ -5,6 +5,7 @@ const { appendArticles } = require("./writeDB");
 const exportMarkdown = require("./exportMarkdown");
 const generateIndex = require("./generateIndex");
 const gitWorkFlow = require("./gitWorkflow");
+const summarize = require("./summarize");
 
 async function run() {
 
@@ -30,8 +31,15 @@ async function run() {
     // markdown export
     let created = 0;
 
-    for (const a of unique) {
-        if (exportMarkdown(a)) created++;
+    for (const article of unique) {
+
+        const ai = await summarize(
+            article.content,
+            article.title
+        );
+
+        article.summary = ai.summary;
+        article.tags = ai.tags;
     }
 
     // indexes
