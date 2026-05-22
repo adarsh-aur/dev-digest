@@ -25,6 +25,7 @@ async function fetchFeeds() {
             articles.push(...items);
         } catch (err) {
             console.log("Failed feed:", feed.url);
+            console.log(err.message);
         }
     }
     return articles;

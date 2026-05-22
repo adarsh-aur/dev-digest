@@ -14,7 +14,7 @@ async function gitWorkFlow() {
 
     await git.add(".");
     await git.commit(msg);
-    await git.push("origin", main);
+    await git.push("origin", "main");
 }
 
 module.exports = gitWorkFlow;
