@@ -1116,5 +1116,35 @@
       "quarterly earnings-driven decision making",
       "ship it and fix it later approach"
     ]
+  },
+  {
+    "id": "7e9de1698fc8e7e7ccb7ec1647b1e376",
+    "title": "You can no longer Google the word ‘disregard’",
+    "link": "https://techcrunch.com/2026/05/22/you-can-no-longer-google-the-word-disregard/",
+    "category": "technology",
+    "pubDate": "Fri, 22 May 2026 16:16:48 +0000",
+    "content": "After Google Search's AI update, the word \"disregard\" now effectively breaks the search interface.",
+    "createdAt": "2026-05-22T16:17:20.675Z",
+    "summary": [
+      "Google Search's AI update has caused issues with searching the word 'disregard'",
+      "The word 'disregard' now breaks the search interface",
+      "This issue is likely due to the AI update's natural language processing",
+      "The search interface may be interpreting 'disregard' as a command",
+      "This could be a result of over-optimization of the AI model",
+      "The issue may be resolved with a future update or patch",
+      "This highlights the potential pitfalls of relying on AI in search interfaces"
+    ],
+    "tags": [
+      "Google Search",
+      "AI update",
+      "natural language processing"
+    ],
+    "importance": "medium",
+    "why_it_matters": "This issue highlights the potential risks of AI-powered search interfaces and the importance of thorough testing. It also raises concerns about the potential for similar issues to arise in the future. Developers and engineers should care about this issue as it demonstrates the need for robust testing and validation of AI models.",
+    "key_insights": [
+      "AI-powered search interfaces can be prone to errors",
+      "Over-optimization of AI models can lead to unexpected issues",
+      "Thorough testing and validation are crucial for AI-powered systems"
+    ]
   }
 ]

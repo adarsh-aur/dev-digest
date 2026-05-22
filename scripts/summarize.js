@@ -1,16 +1,13 @@
 require("dotenv").config();
 
-/**
- * Clean + safe text for LLMs
- */
 function sanitize(text = "") {
     return text
-        .replace(/<[^>]*>/g, "")              // remove HTML
-        .replace(/&nbsp;|&amp;|&quot;/g, " ") // decode common entities
-        .replace(/[\u0000-\u001F\u007F]/g, "") // remove control chars
-        .replace(/\s+/g, " ")                 // normalize spaces
+        .replace(/<[^>]*>/g, "")             
+        .replace(/&nbsp;|&amp;|&quot;/g, " ")
+        .replace(/[\u0000-\u001F\u007F]/g, "")
+        .replace(/\s+/g, " ")                 
         .trim()
-        .slice(0, 3000);                      // HARD LIMIT (critical for Groq)
+        .slice(0, 3000);                      
 }
 
 async function summarize(articleContent, title) {
