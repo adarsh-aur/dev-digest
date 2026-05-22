@@ -1,19 +1,26 @@
 # TECHNOLOGY INDEX
 
+- 0bfd75471bad0498ce1758e43721ae0f.md
 - 271426b49c8d04088bcbadb2655efeff.md
 - 30percent-off-samsung-promo-code-or-may-2026.md
 - 3db5dbae3cb28860fe8234eb25214495.md
 - 615fcb9ad5d9dcec784ed8eb8b7475b1.md
 - 6a0d05f18a0b1ac9d84eb3d539a22b9d.md
 - 6d211f15cd8a5714b28261239e5bd020.md
+- 82d19b7b3f6ada52f0486b63c8717885.md
+- 87e92047b4c80756c03c49f0c82cb31e.md
 - 897f3389d03d2a196004f7f692c0c0d3.md
 - 8b31c18590b74c61eba7742b67c9035b.md
+- 8e301ac137f3125c773cdba8087f186c.md
 - 930ab6469b894420249a7fb1f9bb5a69.md
 - 98d9dd82ea65459042deba0d6ac3622d.md
 - bcf1e87bf959b5c443a1277d1947761a.md
 - c8545dcb1f135b50b95dad8efebc03b0.md
+- ce50abdb9adfc49214dac056260391ed.md
 - chewy-promo-codes-dollar20-off-may-2026.md
+- d4f604fbf2b9413e2a5a43470b83a30c.md
 - da1008d5db36e85d33ab0d3cb21a8e39.md
+- db3ca2f862c001c9181d7b36a21da7d7.md
 - f63d652a3e8f484919f495f5f01be2af.md
 - finnish-phone-maker-hmd-bundles-indian-ai-chatbot-onto-new-smartphone-in-push-to-reach-local-market.md
 - google-workspace-promo-codes-14percent-off-for-may.md

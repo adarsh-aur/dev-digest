@@ -25,7 +25,7 @@ function dedupe(articles) {
         seen.push(a.id);
         unique.push(a);
     }
-
+    console.log("DEDUPE INPUT SAMPLE:", articles.slice(0, 3));  
     saveSeen(seen);
     return unique;
 }

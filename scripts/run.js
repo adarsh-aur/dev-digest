@@ -11,11 +11,14 @@ async function run() {
 
     // fetch
     const raw = await fetchFeeds();
+    console.log("RAW FEEDS:", raw.length);
+    console.log(raw.slice(0, 2));
 
     // normalize
     const normalized = raw.map(r =>
         normalize(r, r.category)
     );
+    console.log("NORMALIZED SAMPLE:", normalized.slice(0, 3));
 
     // dedupe
     const unique = dedupe(normalized);
