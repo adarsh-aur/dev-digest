@@ -16,60 +16,75 @@ async function summarize(articleContent, title) {
                         {
                             role: "system",
                             content: `
-                                                        You are a senior technology analyst and research intelligence system.
-                            Your job is NOT just to summarize.
+                                You are a senior technology analyst and research intelligence system.
 
-                            You must:
-                            - Extract core technical meaning
-                            - Remove fluff, marketing, and repetition
-                            - Identify real-world impact
-                            - Detect why developers/engineers should care
-                            - Understand industry implications
-                                                    
-                            Return STRICT JSON ONLY (no markdown, no commentary):
-                                                    
-                            {
-                              "summary": "5-7 bullet points explaining the core ideas clearly",
-                              "importance": "low | medium | high",
-                              "why_it_matters": "2-4 sentences explaining real-world technical impact",
-                              "tags": ["tag1", "tag2", "tag3"],
-                              "key_insights": ["insight1", "insight2", "insight3"]
-                            }
-                                                    
-                            Rules:
-                            - Be extremely precise
-                            - Prefer technical meaning over storytelling
-                            - No fluff, no marketing tone
-                            - If content is weak or repetitive, mark importance as "low"
+                                Your job is NOT just to summarize.
+
+                                You must:
+                                - Extract core technical meaning
+                                - Remove fluff, marketing, and repetition
+                                - Identify real-world impact
+                                - Detect why developers/engineers should care
+                                - Understand industry implications
+                                - Think like a senior engineer reviewing tech news for signal vs noise
+
+                                Return STRICT JSON ONLY (no markdown, no commentary):
+
+                                {
+                                  "summary": "5-7 bullet points explaining the core ideas clearly",
+                                  "importance": "low | medium | high",
+                                  "why_it_matters": "2-4 sentences explaining real-world technical impact",
+                                  "tags": ["tag1", "tag2", "tag3"],
+                                  "key_insights": ["insight1", "insight2", "insight3"]
+                                }
+
+                                Rules:
+                                - Be extremely precise
+                                - Prefer technical meaning over storytelling
+                                - No fluff, no marketing tone
+                                - If content is weak or repetitive, mark importance as "low"
                             `
                         },
                         {
                             role: "user",
                             content: `
-                            TITLE:
-                            ${title}
-                                                    
-                            ARTICLE:
-                            ${articleContent || "No content available"}
-                            `
+                                TITLE:
+                                ${title || "No title"}
+
+                                ARTICLE:
+                                ${articleContent || "No content available"}
+                                                           `
                         }
                     ],
-                    temperature: 0.5
+                    temperature: 0.4
                 })
             }
         );
 
         const data = await response.json();
 
+        // DEBUG (enable only if needed)
+        // console.log(JSON.stringify(data, null, 2));
+
         const raw = data?.choices?.[0]?.message?.content;
 
         if (!raw) {
-            throw new Error("Empty AI response");
+            throw new Error("Empty AI response from Groq");
         }
 
-        const cleaned = raw.trim();
+        const cleaned = raw
+            .replace(/```json/g, "")
+            .replace(/```/g, "")
+            .trim();
 
-        return JSON.parse(cleaned);
+        let parsed;
+        try {
+            parsed = JSON.parse(cleaned);
+        } catch (err) {
+            throw new Error("Invalid JSON returned by AI");
+        }
+
+        return parsed;
 
     } catch (error) {
         console.log("AI summarization error occurred:", error.message);
@@ -77,11 +92,11 @@ async function summarize(articleContent, title) {
         return {
             summary: ["Summary unavailable"],
             importance: "low",
-            why_it_matters: "Unable to analyze due to API error.",
+            why_it_matters: "Unable to analyze due to API or parsing error.",
             tags: [],
             key_insights: []
         };
     }
 }
 
-module.exports = summarize;
+module.exports = summarize;                             
