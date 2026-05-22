@@ -1,42 +1,54 @@
 const fetchFeeds = require("./fetchFeeds");
-const createMarkdown = require("./summarize");
+const normalize = require("./normalize");
+const dedupe = require("./dedupe");
+const { appendArticles } = require("./writeDB");
+const exportMarkdown = require("./exportMarkdown");
 const generateIndex = require("./generateIndex");
-const gitWorkFlow = require("./gitWorkFlow");
+const gitWorkFlow = require("./gitWorkflow");
 
 async function run() {
-    const articles = await fetchFeeds();
 
-    let createdCount = 0;
+    // fetch
+    const raw = await fetchFeeds();
 
-    // markdown files
-    for (const article of articles) {
-        const created = createMarkdown(article);
-        if (created) createdCount++;
+    // normalize
+    const normalized = raw.map(r =>
+        normalize(r, r.category)
+    );
+
+    // dedupe
+    const unique = dedupe(normalized);
+
+    if (unique.length === 0) {
+        console.log("No new articles");
+        return;
     }
 
-    // dynamic category list
-    const categories = [
-        ...new Set(articles.map(a => a.category))
-    ];
+    // save to DB 
+    appendArticles(unique);
 
-    for (const category of categories) {
-        generateIndex(category);
+    // markdown export
+    let created = 0;
+
+    for (const a of unique) {
+        if (exportMarkdown(a)) created++;
     }
 
-    // commit if change
-    if (createdCount > 0) {
-        await gitWorkFlow();
-        console.log(`Dev Digest Updated Successfully! (${createdCount} new notes)`);
-    } else {
-        console.log("No new content found — skipping commit.");
+    // indexes
+    const categories = [...new Set(unique.map(a => a.category))];
+
+    for (const c of categories) {
+        generateIndex(c);
     }
+
+    // git push
+    await gitWorkFlow();
+
+    console.log(`Dev Digest Updated (${created} new notes)`);
 }
 
 run()
-    .then(() => {
-        console.log("Process finished ✅");
-        process.exit(0);
-    })
+    .then(() => process.exit(0))
     .catch(err => {
         console.error(err);
         process.exit(1);

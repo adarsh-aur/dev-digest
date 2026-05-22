@@ -1,11 +1,11 @@
-const fs = require ('fs');
-const path = require ('path');
+const fs = require("fs");
+const path = require("path");
 
 function generateIndex(category) {
     const dir = path.join(__dirname, "../content", category);
 
-    if(!fs.existsSync(dir)) return;
-    
+    if (!fs.existsSync(dir)) return;
+
     const files = fs.readdirSync(dir);
 
     let output = `# ${category.toUpperCase()} INDEX\n\n`;
@@ -14,9 +14,11 @@ function generateIndex(category) {
         output += `- ${file}\n`;
     }
 
-    const outPath = path.join(__dirname, `../indexes/${category}.md`);
-
-    fs.writeFileSync(outPath, output, 'utf-8');
+    fs.writeFileSync(
+        path.join(__dirname, `../indexes/${category}.md`),
+        output,
+        "utf-8"
+    );
 }
 
 module.exports = generateIndex;
