@@ -1,4 +1,4 @@
-# 🧠 Knowledge Garden — AI News Intelligence Engine
+# 🧠 Dev Digest — AI News Intelligence Engine
 
 An automated **AI-powered news ingestion and summarization system** that continuously collects developer-focused content from RSS feeds, processes it using LLMs, enriches it with structured insights, and stores it in both local storage and Git version control.
 
@@ -6,7 +6,7 @@ An automated **AI-powered news ingestion and summarization system** that continu
 
 ## 🚀 Overview
 
-Knowledge Garden is a personal **AI research intelligence pipeline** that:
+Dev Digest is a personal **AI research intelligence pipeline** that:
 
 - Fetches technical news from multiple RSS feeds  
 - Removes duplicates intelligently  
@@ -65,18 +65,18 @@ Git Auto Commit & Push
 
 ---
 
-### 📝 Markdown Knowledge Vault  
+### 📝 Markdown  Vault  
 - Automatically generates readable `.md` files  
 - Category-based folder structure  
 - Developer-friendly notes format  
 
 ### 📂 Category Indexing  
 - Auto-generates index files per category  
-- Helps navigate knowledge base easily  
+- Helps navigate  base easily  
 
 ### 🔁 Git-Based Versioning  
 - Every run commits changes automatically  
-- Maintains full history of knowledge evolution  
+- Maintains full history of  evolution  
 
 ### 🧠 AI Enrichment Engine  
 Each article is transformed into:  
@@ -136,7 +136,7 @@ node scripts/run.js
 
 ## 👤 Author Note
 
-This project, **Knowledge Garden**, is created and maintained by **@adarsh-aur** as an experimental system to explore how AI can transform raw information streams into structured intelligence.
+This project, **Dev Digest**, is created and maintained by **Adarsh Ranjan** as an experimental system to explore how AI can transform raw information streams into structured intelligence.
 
 It reflects a broader goal: building personal systems that help developers stay informed without drowning in information overload.
 
