@@ -27,15 +27,15 @@ async function summarize(articleContent, title) {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    model: "llama3-70b-8192",
+                    model: "llama-3.3-70b-versatile",
                     messages: [
                         {
                             role: "system",
                             content: `
                                 You are a senior technology analyst and research intelligence system.
-                                                        
+
                                 Your job is NOT just to summarize.
-                                                        
+
                                 You must:
                                 - Extract core technical meaning
                                 - Remove fluff, marketing, and repetition
@@ -43,9 +43,9 @@ async function summarize(articleContent, title) {
                                 - Detect why developers/engineers should care
                                 - Understand industry implications
                                 - Act as a strict signal-vs-noise filter for tech news
-                                                        
+
                                 Return STRICT JSON ONLY:
-                                                        
+
                                 {
                                   "summary": "5-7 bullet points explaining the core ideas clearly",
                                   "importance": "low | medium | high",
@@ -53,7 +53,7 @@ async function summarize(articleContent, title) {
                                   "tags": ["tag1", "tag2", "tag3"],
                                   "key_insights": ["insight1", "insight2", "insight3"]
                                 }
-                                                        
+
                                 Rules:
                                 - No markdown
                                 - No explanations
@@ -68,7 +68,7 @@ async function summarize(articleContent, title) {
                                 TITLE:
                                 ${safeTitle}
 
-                                                               ARTICLE:
+                                ARTICLE:
                                 ${safeContent || "No content available"}
                             `
                         }
