@@ -20,6 +20,16 @@
         "category": "technology"
     },
     {
+        "url": "https://stackoverflow.blog/feed/",
+        "name": "StackOverflow Blog",
+        "category": "development"
+    },
+    {
+        "url": "https://www.wired.com/feed/rss",
+        "name": "Wired",
+        "category": "technology"
+    },
+    {
         "url": "https://mshibanami.github.io/GitHubTrendingRSS/daily/all.xml",
         "name": "Github Trending",
         "category": "opensource"

@@ -1,34 +1,54 @@
-const fs = require ('fs');
-const path = require ('path');
-const slugify = require ('slugify');
+const fs = require("fs");
+const path = require("path");
+const slugify = require("slugify");
 
 function createMarkdown(article) {
-    const slug = slugify(article.title, { lower: true, strict: true });
+    const slug = slugify(article.title, {
+        lower: true,
+        strict: true
+    });
 
-    const folder = path.join(__dirname, "../content", article.category);
+    const folder = path.join(
+        __dirname,
+        "../content",
+        article.category
+    );
 
-    if(!fs.existsSync(folder)) {
+    // ensure folder exists
+    if (!fs.existsSync(folder)) {
         fs.mkdirSync(folder, { recursive: true });
     }
 
-    const filepath = path.join(folder, `${slug}.md`);
+    const filePath = path.join(folder, `${slug}.md`);
+
+    // prevent overwriting 
+    if (fs.existsSync(filePath)) {
+        return false;
+    }
 
     const markdown = `# ${article.title}
 
-    Category: ${article.category}
+Category: ${article.category}
 
-    Published on: ${article.pubDate}
+Published: ${article.pubDate}
 
-    Source: ${article.link}
+Source: ${article.link}
 
-    ## Summary
-    Auto generated summary goes here.
+---
 
-    ## Notes
-    - Add insisghtful notes here.
-    `;
+## Summary
 
-    fs.writeFileSync(filepath, markdown, 'utf-8');
+${article.content || "No summary available."}
+
+---
+
+## Notes
+- Add insightful notes here
+`;
+
+    fs.writeFileSync(filePath, markdown, "utf-8");
+
+    return true;
 }
 
 module.exports = createMarkdown;

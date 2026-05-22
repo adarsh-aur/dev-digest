@@ -19,7 +19,13 @@ async function fetchFeeds() {
                 title: item.title,
                 link: item.link,
                 pubDate: item.pubDate,
-                category: feed.category
+                category: feed.category,
+
+                content:
+                    item.contentSnippet ||
+                    item.content ||
+                    item.summary ||
+                    "No summary available."
             }));
 
             articles.push(...items);
