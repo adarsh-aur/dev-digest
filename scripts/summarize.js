@@ -69,7 +69,7 @@ async function summarize(articleContent, title) {
                                 ${safeTitle}
 
                                 ARTICLE:
-                                ${safeContent || "No content available"}
+                                ${(safeContent || "No content available").slice(0, 2000)}
                             `
                         }
                     ],
@@ -89,7 +89,13 @@ async function summarize(articleContent, title) {
         const raw = data?.choices?.[0]?.message?.content;
 
         if (!raw) {
-            throw new Error("Empty AI response from Groq");
+            return {
+                summary: ["No AI output"],
+                importance: "low",
+                why_it_matters: "Skipped due to API limit or empty response.",
+                tags: [],
+                key_insights: []
+            };
         }
 
         const cleaned = raw
