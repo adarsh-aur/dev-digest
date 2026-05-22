@@ -958,5 +958,163 @@
     "importance": "low",
     "why_it_matters": "Unable to analyze due to API or parsing error.",
     "key_insights": []
+  },
+  {
+    "id": "7b4121a2d1b4705f44ed70a3739c5af5",
+    "title": "I Tested Spam Protection on Formspree vs Formgrid. The Results Were Surprising.",
+    "link": "https://dev.to/allenarduino/i-tested-spam-protection-on-formspree-vs-formgrid-the-results-were-surprising-19c6",
+    "category": "development",
+    "pubDate": "Fri, 22 May 2026 16:12:14 +0000",
+    "content": "If you use Formspree to handle your HTML form submissions, you may have noticed something frustrating lately.\nSpam is getting worse. And Formspree is not stopping it.\nI ran a simple test last week that confirmed what many Formspree users are already experiencing. Here is exactly what happened.\nI set up two identical contact forms. One pointing to a Formspree free plan endpoint. One pointing to a Formgrid free plan endpoint.\nThen I submitted this spam to both:\nName: 💰 Top Up 36,824.92 USDC ⇒⇒ graph.org/BALANCE-3682444-USD-04-21-3?hs=a4973c2d49735de24405dc4e9935f590& 💰\nEmail: oijm2lwwnxhwqn@wshu.net\nMessage: dxospb\n\nThis is a real spam submission. Not something I made up. It was submitted to a real business contact form on 20 May 2026 at 8:26 AM.\n\n\nThe submission went straight to the inbox. No filtering. No blocking. The business owner received the full spam email notification with the cryptocurrency scam content, the disposable email address, and the random gibberish fields.\n\nThis is a Formspree free plan limitation. Spam filtering is not included on the free plan. Every submission, regardless of content, goes directly to your inbox.\nFor a solo developer or small business owner, this is annoying. For a team like a counselling service or a professional services firm, receiving this kind of content in a shared inbox is genuinely disruptive.\nNothing arrived.\nThe submission was silently blocked before it ever reached the inbox. No email notification. No lead created in the dashboard. The spam never existed as far as the form owner was concerned.\n\nFormgrid detected multiple red flags in the submission automatically:\nEmoji in the name field:\n💰 symbols are not legitimate names\n\nCryptocurrency content:\nUSDC and balance transfer patterns are known spam signals\n\nDisposable email address: wshu.net is a known throwaway email domain\n\nURL in the name field: graph.org link embedded in what\nshould be a name field\n\nGibberish fields:\nyp574z, uujdgc, and dxospb are random\ncharacter strings not legitimate data\n\nArrow patterns:\n⇒⇒ is a common spam formatting pattern\nused in crypto scam submissions\n\nAll of these checks run automatically on every Formgrid form on every plan, including free. The form owner never configured anything. \nMost contact forms collect inquiries from real people with real problems your business can solve. When spam floods your inbox, it buries those real inquiries.\nA counselling service receiving cryptocurrency scam content in their team inbox is not just annoying. It is inappropriate and disruptive to their workflow.\nA small business owner checking their form submissions and seeing spam instead of genuine leads is wasting time and losing confidence in their tools.\nForm spam is not a minor inconvenience. It directly affects your ability to respond to real customers quickly.\nFormspree has been around since 2012. Their free plan has always had limited spam protection. As bots become more sophisticated, the gap between what Formspree filters and what actually gets through continues to widen.\nTheir paid plans at $15 per month include reCAPTCHA and additional spam filtering. But that means paying $15 per month just to stop obvious spam that should never reach your inbox in the first place.\n\nFormgrid runs platform level spam checks on every single submission across every form on the platform automatically. These checks cannot be disabled and apply to every plan, including free.\nThe checks include:\nEmoji detection in name fields. Legitimate names do not contain cryptocurrency symbols or emoji.\nDisposable email domain blocking. A database of known throwaway email services like wshu.net, yopmail.com, and mailinator.com is blocked automatically.\nURL detection in name fields. Real names do not contain links. If a name field contains a URL, it is spam.\nHTML injection blocking. Any submission containing HTML tags like anchor links or script tags is silently filtered.\nGibberish field detection. Random character strings in fields that should contain readable text are flagged automatically.\nCryptocurrency and casino keyword filtering. Known spam content patterns are matched and blocked before reaching your inbox.\nArrow pattern detection. Spam formatting patterns like ⇒⇒ used in crypto scam submissions are detected and blocked.\nAll of this runs silently. The spammer receives a successful response, so they never know they were blocked. You never see the submission. Your team never sees the content.\n\n\n\n\nFeature\nFormspree\nFormgrid\n\n\n\n\nSpam filtering\nPaid only\nAll plans\n\n\nEmoji blocking\nNo\nYes\n\n\nDisposable email blocking\nNo\nYes\n\n\nHTML injection blocking\nNo\nYes\n\n\nGibberish detection\nNo\nYes\n\n\nCrypto spam blocking\nNo\nYes\n\n\nPrice for spam filtering\n$15/month\nFree\n\n\n\nSwitching takes about 5 minutes.\nCreate a free account at formgrid.dev\nCreate a new form in your dashboard\nCopy your Formgrid endpoint URL\nReplace your Formspree action URL with your Formgrid endpoint URL\nSubmit a test form to confirm it is working\nYour existing form HTML does not change. Your fields stay the same. Only the action URL changes.\nFrom this:\n<form action=\"https://formspree.io/f/your-form-id\" method=\"POST\">\n\nTo this:\n<form action=\"https://formgrid.dev/api/f/your-form-id\" method=\"POST\">\n\nOne line. Five minutes. No more spam in your inbox.\n\nFormgrid is free to start with no credit card required. Spam protection is included on every plan, including free.\nStart free at formgrid.dev\nIf you are currently on Formspree and tired of spam reaching your inbox, give Formgrid a try. The switch takes 5 minutes, and your team will never see cryptocurrency scam content in their inbox again.",
+    "createdAt": "2026-05-22T16:16:08.949Z",
+    "summary": [
+      "Formspree's free plan does not include spam filtering, allowing spam submissions to reach the inbox",
+      "A test was conducted with identical contact forms on Formspree and Formgrid, submitting a real spam email to both",
+      "The spam email was not filtered by Formspree and reached the inbox, while Formgrid silently blocked the submission",
+      "Formgrid detected multiple red flags in the submission, including emoji in the name field, cryptocurrency content, and disposable email address",
+      "Formgrid's spam protection blocked the submission before it reached the inbox, preventing email notification and lead creation",
+      "The lack of spam filtering on Formspree's free plan can be disruptive for teams and businesses, especially those with shared inboxes",
+      "Formgrid's automatic spam detection and blocking can help prevent unwanted content from reaching the inbox"
+    ],
+    "tags": [
+      "Formspree",
+      "Formgrid",
+      "Spam Protection",
+      "Form Handling"
+    ],
+    "importance": "medium",
+    "why_it_matters": "The lack of effective spam protection on Formspree's free plan can lead to unwanted content reaching business inboxes, causing disruptions and potential security risks. Formgrid's robust spam detection and blocking capabilities can help mitigate these issues, making it a more reliable option for businesses and developers. This highlights the importance of considering spam protection when choosing a form handling service.",
+    "key_insights": [
+      "Formspree's free plan lacks spam filtering",
+      "Formgrid's automatic spam detection and blocking",
+      "Importance of spam protection for businesses and developers"
+    ]
+  },
+  {
+    "id": "4219006af329d1874251947edf220f67",
+    "title": "May 27 - Video Understanding Workshop",
+    "link": "https://dev.to/voxel51/may-27-video-understanding-workshop-3f0e",
+    "category": "development",
+    "pubDate": "Fri, 22 May 2026 16:12:02 +0000",
+    "content": "Join us for a hands-on virtual session on May 27 exploring video-native multimodal AI and how to integrate cutting-edge video understanding models into your computer vision workflows.\nRegister for the Zoom\nAkshat Shrivastava from Perceptron will introduce their latest video-native multimodal model that matches frontier models at a fraction of inference cost, followed by Harpreet Sahota demonstrating how to get started with Perceptron AI inside FiftyOne.\n\nWork through annotation QA, large scale dataset curation, and model evaluation workflows with the Voxel51 team — customized to your use case, your tech stack, and your data. These hands-on workshops are delivered by FiftyOne experts, available through virtual and in-person formats.\nBook a workshop!\nSee you online!",
+    "createdAt": "2026-05-22T16:16:08.949Z",
+    "summary": [
+      "Video Understanding Workshop on May 27",
+      "Exploring video-native multimodal AI",
+      "Integrating cutting-edge video understanding models into computer vision workflows",
+      "Introduction to Perceptron's latest video-native multimodal model",
+      "Hands-on workshop with FiftyOne experts",
+      "Customized workflows for annotation QA, dataset curation, and model evaluation",
+      "Virtual and in-person formats available"
+    ],
+    "tags": [
+      "video understanding",
+      "multimodal AI",
+      "computer vision",
+      "Perceptron",
+      "FiftyOne"
+    ],
+    "importance": "medium",
+    "why_it_matters": "The workshop provides hands-on experience with cutting-edge video understanding models, which can improve computer vision workflows. The Perceptron model's ability to match frontier models at a fraction of the inference cost is significant for real-world applications. This can lead to more efficient and accurate video analysis in various industries.",
+    "key_insights": [
+      "video-native multimodal AI",
+      "efficient video understanding models",
+      "customized workflows for computer vision"
+    ]
+  },
+  {
+    "id": "f512e66a23a8065632557137fa63fbce",
+    "title": "Beyond Keywords: How Google's 2026 Algorithms are Redefining SEO",
+    "link": "https://dev.to/ammar_bidehi/beyond-keywords-how-googles-2026-algorithms-are-redefining-seo-2fp",
+    "category": "development",
+    "pubDate": "Fri, 22 May 2026 16:07:08 +0000",
+    "content": "​Is SEO dead? We’ve all been asking this for years, but in 2026, the question has shifted. It’s no longer about whether SEO is dead, but whether the \"search engine\" as we know it is undergoing a fundamental metamorphosis.",
+    "createdAt": "2026-05-22T16:16:08.949Z",
+    "summary": [
+      "Google's 2026 algorithms are redefining SEO",
+      "Shift from traditional keyword-based optimization",
+      "Search engines are undergoing a fundamental change",
+      "SEO is evolving to accommodate new algorithms",
+      "The role of search engines is changing",
+      "New algorithms prioritize user experience and context",
+      "SEO strategies must adapt to these changes"
+    ],
+    "tags": [
+      "SEO",
+      "Google Algorithms",
+      "Search Engine Optimization"
+    ],
+    "importance": "medium",
+    "why_it_matters": "The evolution of Google's algorithms has significant implications for developers and engineers, as it requires a shift in SEO strategies to prioritize user experience and context. This change can impact website visibility and traffic, making it essential to adapt to the new algorithms. As search engines continue to evolve, understanding these changes is crucial for staying relevant in the digital landscape.",
+    "key_insights": [
+      "Algorithmic changes prioritize user experience",
+      "Context is becoming a key factor in search rankings",
+      "Traditional keyword-based optimization is no longer sufficient"
+    ]
+  },
+  {
+    "id": "cca4ef997612deff91496c8acb09b38d",
+    "title": "From Click to Cart: Ensuring an Accessible Customer Journey in WooCommerce",
+    "link": "https://dev.to/femiyb/from-click-to-cart-ensuring-an-accessible-customer-journey-in-woocommerce-1eh6",
+    "category": "development",
+    "pubDate": "Fri, 22 May 2026 16:07:07 +0000",
+    "content": "You never know who your inaccessible store affects.\nA while ago, I was checking a merchant's website for a reported issue. Their site had a welcome banner with flashing lights. As someone who is epileptic and sensitive to flashing lights, this was a real problem for me. And I'm a developer, not a customer trying to complete a purchase.\nAccessibility isn't a checklist. It's about ensuring everyone can engage with your site safely and comfortably.\nA while back I gave a talk on making WooCommerce accessible. This post expands on that talk with actionable steps you can implement today.\nInaccessible websites create real barriers. Users with disabilities can struggle with navigation, form completion, and ultimately abandon a purchase entirely. Accessible design isn't just a legal requirement in many regions. It's an opportunity to reach more customers and create a smoother experience for everyone.\nYour theme is your foundation. Starting with one built for accessibility means fewer fixes later.\n\nHow to find one:\nGo to your WordPress dashboard\nNavigate to Appearance > Themes > Add New > Feature Filter\n\nSelect Accessibility Ready and E-commerce, then apply\nRecommended: Storefront, a WooCommerce-friendly theme optimised for accessibility\nOnce installed, test it with:\nWAVE checks structural issues and colour contrast\nEqualize Digital Accessibility Checker tests directly in your WordPress dashboard\nNVDA or VoiceOver lets you experience your site the way assistive technology users do\nHeadings guide screen reader users through your page. A broken heading structure is one of the most common accessibility failures on WooCommerce stores.\nBest practice:\nOne H1 per page (usually the page title)\nH2 for main sections, H3 for subsections\nNever skip levels. Don't jump from H1 to H3\n\n\n\nExample for a product page:\nH1: Product Title\nH2: Product Description\nH3: Product Specifications\n\nVague link text like \"Click here\" or \"Learn more\" tells screen reader users nothing.\nInstead:\n❌ \"Click here\"\n✅ \"Learn more about our accessible designs\"\n✅ \"View product details for Coral V-neck T-shirt\"\nNot everyone uses a mouse. All interactive elements including buttons, forms, and modals must be accessible via the Tab key.\nQuick test: Navigate your entire store using only Tab and Shift+Tab. Can you add a product to cart and complete checkout without touching your mouse?\nImplementation tip:\n<!-- Make custom elements keyboard accessible -->\n<button tabindex=\"0\">Add to Cart</button>\n\nIcons without visible text are invisible to screen readers without ARIA labels.\n<a href=\"/cart\" aria-label=\"Shopping Cart\">\n  <i class=\"icon-cart\"></i>\n</a>\n\nApply the same to social media icons, wishlist buttons, and any custom controls.\nEvery product image needs alt text that describes its purpose, not just the object.\n❌ \"T-shirt\"\n✅ \"Coral-coloured V-neck T-shirt made from soft fabric, ideal for casual wear\"\nFor purely decorative images, use an empty attribute so screen readers skip them:\n<img src=\"divider.png\" alt=\"\">\n\nCheckout is where accessibility failures cost you sales. Every field should be clearly labelled and logically grouped.\nBest practices:\nLabel every field explicitly — don't rely on placeholder text alone\nGroup related fields under clear headings like \"Billing Information\" and \"Shipping Information\"\nRemove unnecessary fields. Fewer fields means less friction for everyone\nYour payment gateway needs to be as accessible as the rest of your store.\nWhat to look for:\nFull keyboard navigation support through the entire payment flow\nClear field labels, not just placeholder text that disappears on focus\nAccessible error messages using ARIA live regions\nAudio CAPTCHA alternatives if CAPTCHA is required\nPayPal and Stripe are generally strong here. Whatever gateway you use, test it with a screen reader before going live.\nModals and pop-ups are common sources of keyboard traps — where users get stuck and can't navigate out.\nQuick checklist:\nCan modals be closed with the Esc key?\nCan users tab through modal content and return to the main page?\nIs there a visible close button?\nPredictable layouts reduce cognitive load, especially for users with cognitive disabilities.\nKeep your navigation bar in the same position on every page\nUse consistent button styles and placement for key actions like \"Add to Cart\"\nAccessibility breaks with updates. Build testing into your workflow.\nRecommended tools:\nWAVE for structural and contrast issues\nAxe for browser-based testing\nEqualize Digital Accessibility Checker for WordPress dashboard testing\nNVDA is a free screen reader for Windows\nVoiceOver is a built-in screen reader on macOS and iOS\nMaking your WooCommerce store accessible benefits everyone. Better navigation, improved SEO, and a wider customer base. More importantly, it ensures that no one hits a barrier trying to complete a purchase on your store.\nSimple design choices can make a world of difference. Accessibility isn't just about meeting standards. It's about respecting your customers.\nFemi is a Technical Support Engineer and community organiser based in South Africa, with 9+ years in the WordPress and WooCommerce ecosystem. He recently spoke at DevConf 2026 on the State of Digital Accessibility in Africa.\nTags: #wordpress #woocommerce #accessibility #webdev",
+    "createdAt": "2026-05-22T16:16:08.949Z",
+    "summary": [
+      "Inaccessible websites create barriers for users with disabilities",
+      "Accessibility is not just a legal requirement, but an opportunity to reach more customers",
+      "Choosing an accessible theme is crucial, such as Storefront, a WooCommerce-friendly theme",
+      "Testing tools like WAVE, Equalize Digital Accessibility Checker, NVDA, and VoiceOver can help identify issues",
+      "Proper heading structure is essential for screen reader users, with one H1 per page and no skipped levels",
+      "Clear link text is necessary, avoiding vague phrases like 'Click here' or 'Learn more'",
+      "Accessibility is an ongoing process, not a one-time checklist"
+    ],
+    "tags": [
+      "WooCommerce",
+      "accessibility",
+      "user experience",
+      "inclusive design"
+    ],
+    "importance": "medium",
+    "why_it_matters": "Ensuring an accessible customer journey in WooCommerce is crucial for reaching a wider audience and providing a smoother experience for all users. Inaccessible websites can lead to abandoned purchases and a negative user experience. By prioritizing accessibility, developers can create a more inclusive and user-friendly online store. This, in turn, can lead to increased customer satisfaction and loyalty.",
+    "key_insights": [
+      "accessible theme selection",
+      "proper heading structure",
+      "clear link text",
+      "testing with assistive technologies"
+    ]
+  },
+  {
+    "id": "5d869138b8dbf224f1c546ccb2ce99eb",
+    "title": "Your company won't replace you with good AI. They'll replace you with bad AI.",
+    "link": "https://dev.to/adioof/your-company-wont-replace-you-with-good-ai-theyll-replace-you-with-bad-ai-5bpm",
+    "category": "development",
+    "pubDate": "Fri, 22 May 2026 16:06:37 +0000",
+    "content": "The CEO doesn't want an AI writing better code than you. They want an AI writing code for cheaper than you.\nThat's the part most developers get wrong when they think about the AI threat to their careers.\nWe keep debating whether AI can match a senior engineer's output. If it can have a real understanding of architecture. If it can think through edge cases.\nNone of that matters to the person approving headcount. The question in the boardroom isn't \"Is this AI as good as Sarah?\" It's \"Is this AI good enough to skip hiring Sarah's replacement?\"\nThose are two completely different questions. However, only one of them determines your future.\nThere's a term gaining traction in developer circles: vibe debt. It describes the specific flavor of technical debt that AI-generated code creates — code that looks right, passes a cursory review, maybe even works today, but carries hidden rot.\nIt's the kind of code that makes you say \"this feels off\" without being able to immediately point to why. That's how it got its name.\nHere's the thing about vibe debt: it doesn't show up on a quarterly report. You know what does show up? The salary line item that just got eliminated.\n→ AI slop ships on Tuesday\nThis situation has been happening since the beginning of outsourcing. The only difference is that now we have a new type that creates pull requests.\nBusiness incentives favor cost-cutting over code quality. This isn't cynicism. It's just how quarterly earnings work.\nA Vice President doesn't receive a promotion because they \"maintained excellent code health across the platform.\" It's because they \"reduced engineering spend by 40%.\" What drives people are the rewards they seek.\nSo when a mediocre AI tool can generate a feature that mostly works, that's not a failure to the person holding the budget. It’s considered successful. Ship it, file the bugs later, let the remaining skeleton crew deal with the fallout.\nI have seen this happening before with offshore outsourcing, with no-code tools, with every \"developers are too expensive\" trend. The process is always identical:\n→ Replace skilled people with a cheaper alternative\nAI just makes the first step more convincing. 🎯\nIf the threat isn't brilliant AI but mediocre AI in the hands of aggressive cost-cutters, then your defense isn't \"be slightly better than GPT at writing functions.\"\nYou are defending being the individual who \"gets\" the why of broken things. The person who can enter a repository full of vibe debt and reliably determine it. The person the suits phone after their AI-first approach begins spewing production incidents.\nThe skills that matter most in this world:\n→ Systems thinking — understanding how components interact, not just how to generate them\nDebugging intuition — the AI can write code but it can't feel the wrongness in a stack trace at 2 AM\nOrganizational trust — being the person a team actually believes when you say \"this will break\"\nA cost-cutter can't replace any of those with a $20/month subscription.\nThe developers who are in the most danger are not the ones who can’t keep up with AI. It’s the ones who work at organizations where the leadership sees engineering as an expensive cost to be cut, rather than an essential capability to be grown.\nThe AI isn't the threat. The spreadsheet is.\nSo here's my question for you: Have you seen this pattern emerge within your company — not AI replacing devs outright, but AI being used by leadership as a reason to shrink teams below what they should be? And what happened next?",
+    "createdAt": "2026-05-22T16:16:08.949Z",
+    "summary": [
+      "Companies prioritize cost savings over code quality when adopting AI",
+      "AI-generated code can create 'vibe debt', a type of technical debt with hidden issues",
+      "Business incentives favor cost-cutting over code quality, driving the adoption of mediocre AI tools",
+      "The goal of AI adoption is often to reduce labor costs, not to improve code quality",
+      "The use of AI-generated code can lead to a 'ship it and fix it later' approach, exacerbating technical debt",
+      "The adoption of AI tools is driven by quarterly earnings and budget constraints, rather than technical considerations",
+      "The impact of AI on developer careers is not about replacing humans with better code, but with cheaper code"
+    ],
+    "tags": [
+      "AI adoption",
+      "code quality",
+      "technical debt",
+      "cost savings",
+      "developer careers"
+    ],
+    "importance": "high",
+    "why_it_matters": "The adoption of AI-generated code can have significant implications for code quality, technical debt, and developer careers. As companies prioritize cost savings over code quality, developers may face increased pressure to work with subpar code, leading to decreased job satisfaction and potential career stagnation. Furthermore, the proliferation of 'vibe debt' can have long-term consequences for software maintainability and reliability.",
+    "key_insights": [
+      "vibe debt",
+      "cost-cutting over code quality",
+      "quarterly earnings-driven decision making",
+      "ship it and fix it later approach"
+    ]
   }
 ]
