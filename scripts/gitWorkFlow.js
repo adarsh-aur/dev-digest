@@ -1,7 +1,15 @@
-const simpleGit =  require("simple-git");
+const simpleGit = require("simple-git");
 const git = simpleGit();
 
 async function gitWorkFlow() {
+    
+    const status = await git.status();
+
+    if (status.files.length === 0) {
+        console.log("No new changes to commit.");
+        return;
+    }
+
     const messages = [
         "feat: Dev Digest - Add new article summaries",
         "chore: sync notes with latest articles",
