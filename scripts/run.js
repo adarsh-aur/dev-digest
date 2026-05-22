@@ -25,12 +25,9 @@ async function run() {
         return;
     }
 
-    // save to DB 
-    appendArticles(unique);
-
-    // markdown export
     let created = 0;
 
+    // ai enrichment  
     for (const article of unique) {
 
         const ai = await summarize(
@@ -40,7 +37,17 @@ async function run() {
 
         article.summary = ai.summary;
         article.tags = ai.tags;
+        article.importance = ai.importance;
+        article.why_it_matters = ai.why_it_matters;
+        article.key_insights = ai.key_insights;
+
+        // write markdown (NOW IT WORKS)
+        const fileCreated = exportMarkdown(article);
+        if (fileCreated) created++;
     }
+
+    // save enriched data to DB
+    appendArticles(unique);
 
     // indexes
     const categories = [...new Set(unique.map(a => a.category))];
