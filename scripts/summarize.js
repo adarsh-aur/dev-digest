@@ -1,68 +1,85 @@
-require('dotenv').config();
+require("dotenv").config();
 
-async function summarize() {
+async function summarize(articleContent, title) {
     try {
-        const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
-            method: "POST",
-            headers: {
-                "Authorization": `Bearer ${process.env.GROQ_API_KEY}`,
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                model: "llama3-70b-8192",
-                messages: [
-                    {
-                        role: "system",
-                        content: `You are an expert technology analyst and news curator.
-
-                        Your job:
-                        - Read the article
-                        - Summarize the key points in 5-7 concise bullet points
-                        - Assess the importance of the news (low, medium, high)
-                        - Explain why it matters in 4-5 sentences
-                        - Suggest 3 relevant tags for categorization
-                        - Provide 3 key insights or implications for the industry
-                        - Extract ONLY what is important
-                        - Ignore filler content
-                        - Explain WHY it matters
-                        
-                        Return STRICT JSON ONLY:
-                        
+        const response = await fetch(
+            "https://api.groq.com/openai/v1/chat/completions",
+            {
+                method: "POST",
+                headers: {
+                    "Authorization": `Bearer ${process.env.GROQ_API_KEY}`,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    model: "llama3-70b-8192",
+                    messages: [
                         {
-                          "summary": "5-7 bullet points explaining the key ideas clearly",
-                          "importance": "low | medium | high",
-                          "why_it_matters": "2-3 sentences explaining real-world impact",
-                          "tags": ["tag1", "tag2", "tag3"],
-                          "key_insights": ["insight1", "insight2", "insight3"]
+                            role: "system",
+                            content: `
+                                                        You are a senior technology analyst and research intelligence system.
+                            Your job is NOT just to summarize.
+
+                            You must:
+                            - Extract core technical meaning
+                            - Remove fluff, marketing, and repetition
+                            - Identify real-world impact
+                            - Detect why developers/engineers should care
+                            - Understand industry implications
+                                                    
+                            Return STRICT JSON ONLY (no markdown, no commentary):
+                                                    
+                            {
+                              "summary": "5-7 bullet points explaining the core ideas clearly",
+                              "importance": "low | medium | high",
+                              "why_it_matters": "2-4 sentences explaining real-world technical impact",
+                              "tags": ["tag1", "tag2", "tag3"],
+                              "key_insights": ["insight1", "insight2", "insight3"]
+                            }
+                                                    
+                            Rules:
+                            - Be extremely precise
+                            - Prefer technical meaning over storytelling
+                            - No fluff, no marketing tone
+                            - If content is weak or repetitive, mark importance as "low"
+                            `
+                        },
+                        {
+                            role: "user",
+                            content: `
+                            TITLE:
+                            ${title}
+                                                    
+                            ARTICLE:
+                            ${articleContent || "No content available"}
+                            `
                         }
-                        
-                        Rules:
-                        - Be extremely concise
-                        - Focus on technical or industry impact
-                        - No marketing tone
-                        - No fluff or filter
-                        `
-                    },
-                    {
-                        role: "user",
-                        content: `Title: ${title}\n\nContent: ${content}`
-                    }
-                ],
-                temperature: 0.5
-            })
-        });
+                    ],
+                    temperature: 0.5
+                })
+            }
+        );
 
         const data = await response.json();
-        const output = data.choices?.[0]?.messages?.content;
 
-        return JSON.parse(output);
-    }
-    catch (error) {
-        console.log("AI summarization error occurred:", error.messages);
+        const raw = data?.choices?.[0]?.message?.content;
+
+        if (!raw) {
+            throw new Error("Empty AI response");
+        }
+
+        const cleaned = raw.trim();
+
+        return JSON.parse(cleaned);
+
+    } catch (error) {
+        console.log("AI summarization error occurred:", error.message);
 
         return {
-            summary: content,
-            tages: []
+            summary: ["Summary unavailable"],
+            importance: "low",
+            why_it_matters: "Unable to analyze due to API error.",
+            tags: [],
+            key_insights: []
         };
     }
 }
