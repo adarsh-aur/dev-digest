@@ -1,7 +1,23 @@
 require("dotenv").config();
 
+/**
+ * Clean + safe text for LLMs
+ */
+function sanitize(text = "") {
+    return text
+        .replace(/<[^>]*>/g, "")              // remove HTML
+        .replace(/&nbsp;|&amp;|&quot;/g, " ") // decode common entities
+        .replace(/[\u0000-\u001F\u007F]/g, "") // remove control chars
+        .replace(/\s+/g, " ")                 // normalize spaces
+        .trim()
+        .slice(0, 3000);                      // HARD LIMIT (critical for Groq)
+}
+
 async function summarize(articleContent, title) {
     try {
+        const safeTitle = sanitize(title);
+        const safeContent = sanitize(articleContent);
+
         const response = await fetch(
             "https://api.groq.com/openai/v1/chat/completions",
             {
@@ -17,19 +33,19 @@ async function summarize(articleContent, title) {
                             role: "system",
                             content: `
                                 You are a senior technology analyst and research intelligence system.
-
+                                                        
                                 Your job is NOT just to summarize.
-
+                                                        
                                 You must:
                                 - Extract core technical meaning
                                 - Remove fluff, marketing, and repetition
                                 - Identify real-world impact
                                 - Detect why developers/engineers should care
                                 - Understand industry implications
-                                - Think like a senior engineer reviewing tech news for signal vs noise
-
-                                Return STRICT JSON ONLY (no markdown, no commentary):
-
+                                - Act as a strict signal-vs-noise filter for tech news
+                                                        
+                                Return STRICT JSON ONLY:
+                                                        
                                 {
                                   "summary": "5-7 bullet points explaining the core ideas clearly",
                                   "importance": "low | medium | high",
@@ -37,34 +53,38 @@ async function summarize(articleContent, title) {
                                   "tags": ["tag1", "tag2", "tag3"],
                                   "key_insights": ["insight1", "insight2", "insight3"]
                                 }
-
+                                                        
                                 Rules:
-                                - Be extremely precise
-                                - Prefer technical meaning over storytelling
-                                - No fluff, no marketing tone
-                                - If content is weak or repetitive, mark importance as "low"
+                                - No markdown
+                                - No explanations
+                                - No extra text
+                                - Be precise and technical
+                                - If content is weak, mark importance as "low"
                             `
                         },
                         {
                             role: "user",
                             content: `
                                 TITLE:
-                                ${title || "No title"}
+                                ${safeTitle}
 
-                                ARTICLE:
-                                ${articleContent || "No content available"}
-                                                           `
+                                                               ARTICLE:
+                                ${safeContent || "No content available"}
+                            `
                         }
                     ],
-                    temperature: 0.4
+                    temperature: 0.3
                 })
             }
         );
 
         const data = await response.json();
 
-        // DEBUG (enable only if needed)
-        // console.log(JSON.stringify(data, null, 2));
+                                        // console.log(JSON.stringify(data, null, 2));
+
+        if (data?.error) {
+            throw new Error(data.error.message || "Groq API error");
+        }
 
         const raw = data?.choices?.[0]?.message?.content;
 
@@ -77,14 +97,7 @@ async function summarize(articleContent, title) {
             .replace(/```/g, "")
             .trim();
 
-        let parsed;
-        try {
-            parsed = JSON.parse(cleaned);
-        } catch (err) {
-            throw new Error("Invalid JSON returned by AI");
-        }
-
-        return parsed;
+        return JSON.parse(cleaned);
 
     } catch (error) {
         console.log("AI summarization error occurred:", error.message);
@@ -99,4 +112,4 @@ async function summarize(articleContent, title) {
     }
 }
 
-module.exports = summarize;                             
+module.exports = summarize;
